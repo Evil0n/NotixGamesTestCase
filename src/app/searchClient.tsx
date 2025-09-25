@@ -3,17 +3,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState, ChangeEvent } from 'react';
 import type { ReactElement } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
-type SearchItem = {
-  id: string;
-  title: string;
-  snippet: string;
-};
-
-type SearchResponse = {
-  query: string;
-  items: ReadonlyArray<SearchItem>;
-};
+import styles from './search.module.scss';
+import type { SearchItem, SearchResponse } from './types';
+import { DEBOUNCE_DELAY } from './constants';
 
 function useDebouncedValue<T>(value: T, delayMs: number): T {
   const [debounced, setDebounced] = useState<T>(value);
@@ -24,14 +16,14 @@ function useDebouncedValue<T>(value: T, delayMs: number): T {
   return debounced;
 }
 
-export function SearchClient(): ReactElement {
+export const SearchClient = (): ReactElement => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const qParam = searchParams.get('q') ?? '';
   const [input, setInput] = useState<string>(qParam);
-  const debounced = useDebouncedValue<string>(input, 250);
+  const debounced = useDebouncedValue<string>(input, DEBOUNCE_DELAY);
 
   const [items, setItems] = useState<ReadonlyArray<SearchItem>>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -53,8 +45,7 @@ export function SearchClient(): ReactElement {
       params.delete('q');
     }
     router.replace(`${pathname}?${params.toString()}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounced]);
+  }, [debounced, pathname, router, searchParams]);
 
   const fetchSearch = useCallback(async (query: string): Promise<void> => {
     if (abortRef.current) {
@@ -88,7 +79,11 @@ export function SearchClient(): ReactElement {
       if (e instanceof DOMException && e.name === 'AbortError') {
         return;
       }
-      setError(e instanceof Error ? e.message : 'Unknown error');
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError('Unknown error');
+      }
     } finally {
       if (requestId >= lastHandledIdRef.current) {
         setLoading(false);
@@ -112,23 +107,23 @@ export function SearchClient(): ReactElement {
 
   const content = useMemo(() => {
     if (!hasQuery && items.length === 0) {
-      return <div>Введите запрос для поиска</div>;
+      return <div className={styles.emptyState}>Введите запрос для поиска</div>;
     }
     if (loading) {
-      return <div>Загрузка…</div>;
+      return <div className={styles.loading}>Загрузка…</div>;
     }
     if (error) {
-      return <div style={{ color: '#b00' }}>Ошибка: {error}</div>;
+      return <div className={styles.error}>Ошибка: {error}</div>;
     }
     if (items.length === 0) {
-      return <div>Ничего не найдено</div>;
+      return <div className={styles.emptyState}>Ничего не найдено</div>;
     }
     return (
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+      <ul className={styles.resultsList}>
         {items.map((it) => (
-          <li key={it.id} style={{ padding: '8px 0', borderBottom: '1px solid #eee' }}>
-            <div style={{ fontWeight: 600 }}>{it.title}</div>
-            <div style={{ color: '#555' }}>{it.snippet}</div>
+          <li key={it.id} className={styles.resultItem}>
+            <div className={styles.resultTitle}>{it.title}</div>
+            <div className={styles.resultSnippet}>{it.snippet}</div>
           </li>
         ))}
       </ul>
@@ -136,9 +131,9 @@ export function SearchClient(): ReactElement {
   }, [items, loading, error, hasQuery]);
 
   return (
-    <div style={{ maxWidth: 720, margin: '40px auto', padding: '0 16px' }}>
-      <h1 style={{ marginBottom: 16 }}>Поиск</h1>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <div className={styles.searchContainer}>
+      <h1 className={styles.searchTitle}>Поиск</h1>
+      <div className={styles.searchControls}>
         <input
           type="text"
           value={input}
@@ -146,28 +141,20 @@ export function SearchClient(): ReactElement {
           placeholder="Начните вводить…"
           aria-label="Строка поиска"
           autoFocus
-          style={{
-            flex: 1,
-            padding: '10px 12px',
-            borderRadius: 8,
-            border: '1px solid #ccc',
-            outline: 'none',
-          }}
+          className={styles.searchInput}
         />
         {input && (
           <button
             type="button"
             onClick={onClear}
             aria-label="Очистить"
-            style={{ padding: '10px 12px', borderRadius: 8, border: '1px solid #ccc', background: '#000' }}
+            className={styles.clearButton}
           >
             Очистить
           </button>
         )}
       </div>
-      <div style={{ marginTop: 16 }}>{content}</div>
+      <div className={styles.searchContent}>{content}</div>
     </div>
   );
 }
-
-
