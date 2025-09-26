@@ -1,6 +1,4 @@
 @use "sass:color";
-
-// Variables
 $primary-color: #0070f3;
 $secondary-color: #6c757d;
 $danger-color: #dc3545;
@@ -12,18 +10,11 @@ $border-radius: 8px;
 $border-color: #dee2e6;
 $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 @mixin button-style {
   padding: 10px 12px;
   border-radius: $border-radius;
   border: 1px solid $border-color;
-  background: $dark-color;
+  background: $light-color;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -55,8 +46,6 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: $secondary-color;
   }
 }
-
-// Main styles
 .searchContainer {
   max-width: 720px;
   margin: 40px auto;
@@ -134,8 +123,6 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   }
 }
-
-// Responsive design
 @media (max-width: 768px) {
   .searchContainer {
     margin: 20px auto;

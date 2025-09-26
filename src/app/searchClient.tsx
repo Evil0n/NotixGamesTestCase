@@ -128,7 +128,7 @@ export const SearchClient = (): ReactElement => {
         ))}
       </ul>
     );
-  }, [items, loading, error, hasQuery]);
+  }, [hasQuery, items, loading, error]);
 
   return (
     <div className={styles.searchContainer}>

@@ -63,65 +63,99 @@ const DATA: ReadonlyArray<SearchItem> = [
   { id: '58', title: 'Pineapple', snippet: 'Spiky fruit' },
   { id: '59', title: 'Plum', snippet: 'Purple fruit' },
   { id: '60', title: 'Pomegranate', snippet: 'Red seeds' },
-  { id: '61', title: 'Quince', snippet: 'Hard fruit' },
-  { id: '62', title: 'Rambutan', snippet: 'Hairy fruit' },
-  { id: '63', title: 'Star fruit', snippet: 'Star shaped' },
-  { id: '64', title: 'Tamarind', snippet: 'Sour fruit' },
-  { id: '65', title: 'Ugli fruit', snippet: 'Ugly citrus' },
-  { id: '66', title: 'Vanilla', snippet: 'Sweet spice' },
-  { id: '67', title: 'Wineberry', snippet: 'Wine colored' },
-  { id: '68', title: 'Xigua', snippet: 'Chinese watermelon' },
-  { id: '69', title: 'Yuzu', snippet: 'Japanese citrus' },
-  { id: '70', title: 'Zucchini', snippet: 'Green squash' },
-  { id: '71', title: 'Avocado', snippet: 'Green butter' },
-  { id: '72', title: 'Blueberry', snippet: 'Small blue berry' },
-  { id: '73', title: 'Cantaloupe', snippet: 'Orange melon' },
-  { id: '74', title: 'Durian', snippet: 'Smelly fruit' },
-  { id: '75', title: 'Eggplant', snippet: 'Purple vegetable' },
-  { id: '76', title: 'Fennel', snippet: 'Anise flavor' },
-  { id: '77', title: 'Ginger', snippet: 'Spicy root' },
-  { id: '78', title: 'Horseradish', snippet: 'Hot root' },
-  { id: '79', title: 'Iceberg', snippet: 'Crisp lettuce' },
-  { id: '80', title: 'Jicama', snippet: 'Mexican turnip' },
-  { id: '81', title: 'Kale', snippet: 'Dark green leaf' },
-  { id: '82', title: 'Leek', snippet: 'Long onion' },
-  { id: '83', title: 'Mushroom', snippet: 'Fungi food' },
-  { id: '84', title: 'Napa', snippet: 'Chinese cabbage' },
-  { id: '85', title: 'Okra', snippet: 'Slimy vegetable' },
-  { id: '86', title: 'Pepper', snippet: 'Spicy vegetable' },
-  { id: '87', title: 'Quinoa', snippet: 'Super grain' },
-  { id: '88', title: 'Radish', snippet: 'Spicy root' },
-  { id: '89', title: 'Spinach', snippet: 'Popeye food' },
-  { id: '90', title: 'Tomato', snippet: 'Red fruit' },
-  { id: '91', title: 'Umami', snippet: 'Fifth taste' },
-  { id: '92', title: 'Vinegar', snippet: 'Sour liquid' },
-  { id: '93', title: 'Wasabi', snippet: 'Hot paste' },
-  { id: '94', title: 'Xylitol', snippet: 'Sugar substitute' },
-  { id: '95', title: 'Yam', snippet: 'Sweet potato' },
-  { id: '96', title: 'Zest', snippet: 'Citrus peel' },
-  { id: '97', title: 'Arugula', snippet: 'Peppery green' },
-  { id: '98', title: 'Broccoli', snippet: 'Green tree' },
-  { id: '99', title: 'Cauliflower', snippet: 'White tree' },
-  { id: '100', title: 'Dandelion', snippet: 'Weed greens' },
+  { id: '61', title: 'Rambutan', snippet: 'Hairy fruit' },
+  { id: '62', title: 'Star fruit', snippet: 'Star shaped' },
+  { id: '63', title: 'Tamarind', snippet: 'Sour fruit' },
+  { id: '64', title: 'Ugli fruit', snippet: 'Ugly citrus' },
+  { id: '65', title: 'Vanilla', snippet: 'Sweet spice' },
+  { id: '66', title: 'Wineberry', snippet: 'Wine colored' },
+  { id: '67', title: 'Xigua', snippet: 'Chinese watermelon' },
+  { id: '68', title: 'Yuzu', snippet: 'Japanese citrus' },
+  { id: '69', title: 'Zucchini', snippet: 'Green squash' },
+  { id: '70', title: 'Avocado', snippet: 'Green butter' },
+  { id: '71', title: 'Blueberry', snippet: 'Small blue berry' },
+  { id: '72', title: 'Cantaloupe', snippet: 'Orange melon' },
+  { id: '73', title: 'Durian', snippet: 'Smelly fruit' },
+  { id: '74', title: 'Eggplant', snippet: 'Purple vegetable' },
+  { id: '75', title: 'Fennel', snippet: 'Anise flavor' },
+  { id: '76', title: 'Ginger', snippet: 'Spicy root' },
+  { id: '77', title: 'Horseradish', snippet: 'Hot root' },
+  { id: '78', title: 'Iceberg', snippet: 'Crisp lettuce' },
+  { id: '79', title: 'Jicama', snippet: 'Mexican turnip' },
+  { id: '80', title: 'Kale', snippet: 'Dark green leaf' },
+  { id: '81', title: 'Leek', snippet: 'Long onion' },
+  { id: '82', title: 'Mushroom', snippet: 'Fungi food' },
+  { id: '83', title: 'Napa', snippet: 'Chinese cabbage' },
+  { id: '84', title: 'Okra', snippet: 'Slimy vegetable' },
+  { id: '85', title: 'Pepper', snippet: 'Spicy vegetable' },
+  { id: '86', title: 'Quinoa', snippet: 'Super grain' },
+  { id: '87', title: 'Radish', snippet: 'Spicy root' },
+  { id: '88', title: 'Spinach', snippet: 'Popeye food' },
+  { id: '89', title: 'Tomato', snippet: 'Red fruit' },
+  { id: '90', title: 'Umami', snippet: 'Fifth taste' },
+  { id: '91', title: 'Vinegar', snippet: 'Sour liquid' },
+  { id: '92', title: 'Wasabi', snippet: 'Hot paste' },
+  { id: '93', title: 'Xylitol', snippet: 'Sugar substitute' },
+  { id: '94', title: 'Yam', snippet: 'Sweet potato' },
+  { id: '95', title: 'Zest', snippet: 'Citrus peel' },
+  { id: '96', title: 'Arugula', snippet: 'Peppery green' },
+  { id: '97', title: 'Broccoli', snippet: 'Green tree' },
+  { id: '98', title: 'Cauliflower', snippet: 'White tree' },
+  { id: '99', title: 'Dandelion', snippet: 'Weed greens' },
+  { id: '100', title: 'Endive', snippet: 'Bitter green' },
 ];
 
-// Кэш для результатов поиска
+const SEARCH_INDEX = new Map<string, Set<number>>();
+
+DATA.forEach((item, index) => {
+  const text = `${item.title} ${item.snippet}`.toLowerCase();
+  const words = text.split(/\s+/).filter(word => word.length > 0);
+  words.forEach(word => {
+    if (!SEARCH_INDEX.has(word)) {
+      SEARCH_INDEX.set(word, new Set());
+    }
+    SEARCH_INDEX.get(word)!.add(index);
+  });
+});
+
+const MAX_CACHE_SIZE = 100;
 const searchCache = new Map<string, ReadonlyArray<SearchItem>>();
 
 function filterData(query: string): ReadonlyArray<SearchItem> {
   const q = query.trim().toLowerCase();
   if (q.length === 0) return [];
   
-  // Проверить кэш
   if (searchCache.has(q)) {
     return searchCache.get(q)!;
   }
   
-  const results = DATA.filter((item) =>
-    item.title.toLowerCase().includes(q) || item.snippet.toLowerCase().includes(q)
-  ).slice(0, 10);
+  const words = q.split(/\s+/).filter(word => word.length > 0);
+  const indices = new Set<number>();
   
-  // Сохранить в кэш
+  if (words.length === 0) return [];
+  
+  words.forEach(word => {
+    if (SEARCH_INDEX.has(word)) {
+      SEARCH_INDEX.get(word)!.forEach(index => indices.add(index));
+    }
+  });
+  
+  const results = Array.from(indices)
+    .map(index => DATA[index])
+    .filter(item => {
+      const title = item.title.toLowerCase();
+      const snippet = item.snippet.toLowerCase();
+      return words.some(word => title.includes(word) || snippet.includes(word));
+    })
+    .slice(0, 10);
+  
+  if (searchCache.size >= MAX_CACHE_SIZE) {
+    const firstKey = searchCache.keys().next().value;
+    if (firstKey) {
+      searchCache.delete(firstKey);
+    }
+  }
+  
   searchCache.set(q, results);
   return results;
 }
@@ -145,9 +179,7 @@ function delay(ms: number, signal: AbortSignal): Promise<void> {
 export async function GET(req: NextRequest): Promise<Response> {
   const { searchParams } = new URL(req.url);
   const query = searchParams.get('q') ?? '';
-  const min = MIN_LATENCY;
-  const max = MAX_LATENCY;
-  const latency = Math.floor(Math.random() * (max - min + 1)) + min;
+  const latency = Math.floor(Math.random() * (MAX_LATENCY - MIN_LATENCY + 1)) + MIN_LATENCY;
 
   try {
     await delay(latency, req.signal);
